@@ -1,5 +1,5 @@
 require 'cunn'
-require 'ccn2'
+require 'cudnn'
 
 -- Very Deep model
 function very_deep_model() -- validate.lua Acc: 0.924
@@ -9,36 +9,36 @@ function very_deep_model() -- validate.lua Acc: 0.924
    -- Convolution Layers
    
    model:add(nn.Transpose({1,4},{1,3},{1,2}))
-   model:add(ccn2.SpatialConvolution(3, 64, 3, 1, 1))
+   model:add(cudnn.SpatialConvolution(3, 64, 3, 1, 1))
    model:add(nn.ReLU())
-   model:add(ccn2.SpatialConvolution(64, 64, 3, 1, 1))
+   model:add(cudnn.SpatialConvolution(64, 64, 3, 1, 1))
    model:add(nn.ReLU())
-   model:add(ccn2.SpatialMaxPooling(2, 2))
+   model:add(cudnn.SpatialMaxPooling(2, 2))
    model:add(nn.Dropout(0.25))
       
-   model:add(ccn2.SpatialConvolution(64, 128, 3, 1, 1))
+   model:add(cudnn.SpatialConvolution(64, 128, 3, 1, 1))
    model:add(nn.ReLU())
-   model:add(ccn2.SpatialConvolution(128, 128, 3, 1, 1))
+   model:add(cudnn.SpatialConvolution(128, 128, 3, 1, 1))
    model:add(nn.ReLU())
-   model:add(ccn2.SpatialMaxPooling(2, 2))
+   model:add(cudnn.SpatialMaxPooling(2, 2))
    model:add(nn.Dropout(0.25))
    
-   model:add(ccn2.SpatialConvolution(128, 256, 3, 1, 1))
+   model:add(cudnn.SpatialConvolution(128, 256, 3, 1, 1))
    model:add(nn.ReLU())
-   model:add(ccn2.SpatialConvolution(256, 256, 3, 1, 1))
+   model:add(cudnn.SpatialConvolution(256, 256, 3, 1, 1))
    model:add(nn.ReLU())
-   model:add(ccn2.SpatialConvolution(256, 256, 3, 1, 1))
+   model:add(cudnn.SpatialConvolution(256, 256, 3, 1, 1))
    model:add(nn.ReLU())
-   model:add(ccn2.SpatialConvolution(256, 256, 3, 1, 1))
+   model:add(cudnn.SpatialConvolution(256, 256, 3, 1, 1))
    model:add(nn.ReLU())
-   model:add(ccn2.SpatialMaxPooling(2, 2))
+   model:add(cudnn.SpatialMaxPooling(2, 2))
    model:add(nn.Dropout(0.25))
    
    -- Fully Connected Layers   
-   model:add(ccn2.SpatialConvolution(256, 1024, 3, 1, 0))
+   model:add(cudnn.SpatialConvolution(256, 1024, 3, 1, 0))
    model:add(nn.ReLU())
    model:add(nn.Dropout(0.5))
-   model:add(ccn2.SpatialConvolution(1024, 1024, 1, 1, 0))
+   model:add(cudnn.SpatialConvolution(1024, 1024, 1, 1, 0))
    model:add(nn.ReLU())
    model:add(nn.Dropout(0.5))
    
